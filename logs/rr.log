@@ -1,0 +1,93 @@
+2023-05-05 23:52:58,550 ERROR: Exception on /auth/login [GET] [in C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py:1744]
+Traceback (most recent call last):
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Home\Flask\rr\app\auth\routes.py", line 30, in login
+    return render_template('login.html', title='Sign In', form=form)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\jinja2\loaders.py", line 126, in load
+    source, filename, uptodate = self.get_source(environment, name)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\templating.py", line 62, in get_source
+    return self._get_source_fast(environment, template)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\templating.py", line 98, in _get_source_fast
+    raise TemplateNotFound(template)
+jinja2.exceptions.TemplateNotFound: login.html
+2023-05-05 23:59:52,003 INFO: RealtyRadar startup [in C:\Users\Home\Flask\rr\app\__init__.py:64]
+2023-05-06 00:00:31,351 ERROR: Exception on / [GET] [in C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py:1744]
+Traceback (most recent call last):
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "C:\Users\Home\Flask\rr\app\main\routes.py", line 28, in index
+    posts = current_user.followed_posts().paginate(page=page, per_page=current_app.config['POSTS_PER_PAGE'], error_out=False)
+NameError: name 'current_app' is not defined
+2023-05-06 00:08:25,758 INFO: RealtyRadar startup [in C:\Users\Home\Flask\rr\app\__init__.py:64]
+2023-05-06 00:08:35,857 ERROR: Exception on / [GET] [in C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py:1744]
+Traceback (most recent call last):
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask_login\utils.py", line 290, in decorated_view
+    return current_app.ensure_sync(func)(*args, **kwargs)
+  File "C:\Users\Home\Flask\rr\app\main\routes.py", line 28, in index
+    posts = current_user.followed_posts().paginate(page=page, per_page=current_app.config['POSTS_PER_PAGE'], error_out=False)
+NameError: name 'current_app' is not defined
+2023-05-06 00:10:09,890 INFO: RealtyRadar startup [in C:\Users\Home\Flask\rr\app\__init__.py:64]
+2023-05-06 00:13:03,630 ERROR: Exception on /auth/reset_password_request [GET] [in C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py:1744]
+Traceback (most recent call last):
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 2528, in wsgi_app
+    response = self.full_dispatch_request()
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1825, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1823, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\app.py", line 1799, in dispatch_request
+    return self.ensure_sync(self.view_functions[rule.endpoint])(**view_args)
+  File "C:\Users\Home\Flask\rr\app\auth\routes.py", line 77, in reset_password_request
+    return render_template('auth/reset_password_request.html', title='Reset Password', form=form)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\flask\templating.py", line 146, in render_template
+    template = app.jinja_env.get_or_select_template(template_name_or_list)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\jinja2\environment.py", line 1081, in get_or_select_template
+    return self.get_template(template_name_or_list, parent, globals)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\jinja2\environment.py", line 1010, in get_template
+    return self._load_template(name, globals)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\jinja2\environment.py", line 969, in _load_template
+    template = self.loader.load(self, name, self.make_globals(globals))
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\jinja2\loaders.py", line 138, in load
+    code = environment.compile(source, name, filename)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\jinja2\environment.py", line 768, in compile
+    self.handle_exception(source=source_hint)
+  File "C:\Users\Home\Flask\rr\env\lib\site-packages\jinja2\environment.py", line 936, in handle_exception
+    raise rewrite_traceback_stack(source=source)
+  File "C:\Users\Home\Flask\rr\app\templates\auth\reset_password_request.html", line 3, in template
+    {% block app-content %}
+jinja2.exceptions.TemplateSyntaxError: Block names in Jinja have to be valid Python identifiers and may not contain hyphens, use an underscore instead.
+2023-05-07 00:53:09,193 INFO: RealtyRadar startup [in C:\Users\Home\Flask\rr\app\__init__.py:64]
+2023-05-07 00:57:12,817 INFO: RealtyRadar startup [in C:\Users\Home\Flask\rr\app\__init__.py:64]
+2023-05-07 01:04:51,633 INFO: RealtyRadar startup [in C:\Users\Home\Flask\rr\app\__init__.py:64]
+2023-05-07 01:15:12,145 INFO: RealtyRadar startup [in C:\Users\Home\Flask\RealtyRadar\app\__init__.py:64]
