@@ -1,5 +1,5 @@
 from flask import render_template
-from app import db
+from app.models import db
 from app.errors import bp
 
 @bp.errorhandler(404)

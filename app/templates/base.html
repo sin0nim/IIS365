@@ -9,18 +9,25 @@
 	<nav class="navbar navbar-default">
 		<div class="container">
 		<a class="blog-nav-item" href="{{ url_for('main.index') }}" }}>Home</a>
+		
+		<a class="blog-nav-item" href="{{ url_for('hse.index') }}" }}>Аренда</a>
+		{% if not current_user.is_anonymous %}
+			<a class="blog-nav-item" href="{{ url_for('hse.insert') }}" }}>Сдать</a>
+		
+		{% endif %}
+		
+		<a class="blog-nav-item" href="{{ url_for('pch.index') }}" }}>Покупка</a>
+		{% if not current_user.is_anonymous %}
+			<a class="blog-nav-item" href="{{ url_for('pch.insert') }}" }}>Продать</a>
+		{% endif %}
+		
 		{% if current_user.is_anonymous %}
 			<a class="blog-nav-item" href="{{ url_for('auth.login') }}">Login</a>
 		{% else %}
 			<a class="blog-nav-item" href="{{ url_for('main.user', username=current_user.username) }}">Profile</a>
-			<a class="blog-nav-item" href="{{ url_for('main.explore') }}">Explore</a>
 			<a class="blog-nav-item" href="{{ url_for('auth.logout') }}">Logout</a>
 		{% endif %}
-<!--
-		<div>
-			<h4>RealtyRadar</h4>
-		</div>
--->
+
 		</div>
 	</nav>
 		

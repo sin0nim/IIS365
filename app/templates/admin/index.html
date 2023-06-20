@@ -1,0 +1,7 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+  <h1>Вы находитесь в административной панели.</h1>
+  <p>current_user = {{ current_user }}</p>
+  <p>current_user.is_authenticated = {{ current_user.is_authenticated }}</p>
+{% endblock %}

@@ -3,30 +3,37 @@
 {% block app_content %}
 	<table>
         <tr valign="top">
-            <td><img src="{{ user.avatar(128) }}"></td>
             <td>
                 <h1>User: {{ user.username }}</h1>
-                {% if user.about_me %}<p>{{ user.about_me }}</p>{% endif %}
+                {% if user.about %}<p>{{ user.about }}</p>{% endif %}
                 {% if user.last_seen %}<p>Last seen on: {{ user.last_seen }}</p>{% endif %}
-				<p>{{ user.followers.count() }} followers, {{ user.followed.count() }} following.</p>
+				
 				{% if user == current_user %}
 				<p><a href="{{ url_for('auth.edit_profile') }}">Edit your profile</a></p>
-				{% elif not current_user.is_following(user) %}
-				<p><a href="{{ url_for('main.follow', username=user.username) }}">Follow</a></p>
-				{% else %}
-				<p><a href="{{ url_for('main.unfollow', username=user.username) }}">Unfollow</a></p>
 				{% endif %}
             </td>
         </tr>
     </table>
-    <hr>
-    {% for post in posts %}
-		{% include '_post.html' %}
-    {% endfor %}
-	{% if prev_url %}
-		<a href="{{ prev_url }}">Newer posts&nbsp;&nbsp;</a>
+	{% if not current_user.is_anonymous %}
+		<div class="container">
+			На вашем счету: {{ user.money if user.money else 0.00 }} р.<br>
+			Предложения сдать в аренду(
+			<a class="blog-nav-item" href="{{ url_for('hse.rent') }}">{{ user.house_offers.count() }}</a>)
+			Предложения продать(
+			<a class="blog-nav-item" href="{{ url_for('pch.buy') }}">{{ user.purchase_offers.count() }}</a>)
+		</div>
 	{% endif %}
-	{% if next_url %}
-		<a href="{{ next_url }}">&nbsp;&nbsp;Older posts</a>
+
+    {% if posts %}
+	<hr>
+		{% for post in posts %}
+			{% include '_post.html' %}
+		{% endfor %}
+		{% if prev_url %}
+			<a href="{{ prev_url }}">Новые&nbsp;&nbsp;</a>
+		{% endif %}
+		{% if next_url %}
+			<a href="{{ next_url }}">&nbsp;&nbsp;Старые</a>
+		{% endif %}
 	{% endif %}
 {% endblock %}

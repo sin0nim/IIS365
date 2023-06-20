@@ -1,31 +1,11 @@
 {% extends "base.html" %}
-{% import 'bootstrap/wtf.html' as wtf %}
 
 {% block app_content %}
-    <h1>Hi, {{ current_user.username }}!</h1>
-	<div class="row">
-		<div class="col-md-4">
-			{{ wtf.quick_form(form) }}
-		</div>
-	</div>
-
-    {% for post in posts %}
-		{% include '_post.html' %}
-    {% endfor %}
-	
-	<nav aria-label="index">
-		<ul class="pager">
-			<li class=previous{% if not prev_url %} disabled{% endif %}>
-				<a href="{{ prev_url or '#'}}">
-					<span aria-hidden='true'>&larr;</span> Newer posts
-				</a>
-			</li>
-			<li class=previous{% if not next_url %} disabled{% endif %}>
-				<a href="{{ next_url or '#'}}">
-					Older posts <span aria-hidden='true'>&larr;</span>
-				</a>
-			</li>
-		</ul>
-	</nav>
+    {% if current_user.is_authenticated %}
+		<span style="font-size: 18px; font-family: Verdana, Serif;">Здравствуйте, {{ current_user.username }}!</span>
+	{% else %}
+		<h1>Здравствуйте!</h1>
+		<span style="font-size: 18px; font-family: Verdana, Serif;">Для того, чтобы искать недвижимость для покупки или аренды, авторизация не нужна.<br>Если вы хотите выставить на продажу или в аренду недвижимость,<br>пожалуйста, <a href="{{ url_for('auth.login') }}">авторизуйтесь</a> или <a href="{{ url_for('auth.register') }}">зарегистрируйтесь.</a><br>Авторизованным пользователям доступны дополнительные возможности.</span>
+	{% endif %}
 {% endblock %}
     

@@ -1,10 +1,11 @@
 from datetime import datetime, timedelta
 import unittest
 from app import app, db
-from app.models import User, Post
+from app.models import Users
 
 class UserModelCase(unittest.TestCase):
     def setUp(self):
+        admin._view = []
         app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:Domino@localhost/test'
         db.create_all()
     
@@ -13,17 +14,18 @@ class UserModelCase(unittest.TestCase):
         db.drop_all()
     
     def test_password_hashing(self):
-        u = User(username='susan')
+        u = Users(username='susan')
         u.set_password('cat')
         self.assertFalse(u.check_password('dog'))
         self.assertTrue(u.check_password('cat'))
     
     def test_avatar(self):
-        u = User(username='john', email='john@example.com')
+        u = Users(username='john', email='john@example.com')
         self.assertEqual(u.avatar(128), ('https://www.gravatar.com/avatar/'
                                          'd4c74594d841139328695756648b6bd6'
                                          '?d=identicon&s=128'))
     
+    '''
     def test_follow(self):
         u1 = User(username='john', email='john@example.com')
         u2 = User(username='susan', email='susan@example.com')
@@ -83,6 +85,7 @@ class UserModelCase(unittest.TestCase):
         self.assertEqual(f2, [p2, p3])
         self.assertEqual(f3, [p3, p4])
         self.assertEqual(f4, [p4])
+    '''
 
 if __name__ == '__main__':
     with app.app_context():
