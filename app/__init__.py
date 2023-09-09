@@ -1,8 +1,8 @@
-from flask import Flask, request, current_app
+from flask import Flask, request, current_app, url_for
 from config import Config
 # from flask_sqlalchemy import SQLAlchemy
 from flask_migrate import Migrate
-# from flask_login import LoginManager
+from flask_login import LoginManager
 from flask_mail import Mail
 from flask_bootstrap import Bootstrap
 from flask_admin import Admin
@@ -11,9 +11,10 @@ import logging
 from logging.handlers import SMTPHandler, RotatingFileHandler
 import os
 
-from app.admin.routes import HouseModelView, PurchaseModelView, AdminIndex
+from app.admin.routes import HouseModelView, MyHouseModelView, UsersModelView, PurchaseModelView, MyPurchaseModelView, AdminIndex, MenuLink
 
 migrate = Migrate()
+login = LoginManager()
 # login.login_view = 'auth.login'
 mail = Mail()
 bootstrap = Bootstrap()
@@ -29,11 +30,12 @@ def create_app(config_class=Config):
     from app.models import db, login
     
     admin.init_app(app)
-    admin.add_view(sqla.ModelView(Users, db.session))
-    admin.add_view(HouseModelView(House, db.session))
-    admin.add_view(PurchaseModelView(Purchase, db.session))
-    # admin.add_link(AdminIndex(name='Login/Logout', endpoint='admin.login_view'))
-    
+    admin.add_view(UsersModelView(Users, db.session))
+    admin.add_view(MyHouseModelView(name='MyHouses', endpoint="my_houses"))
+    admin.add_view(MyPurchaseModelView(name='MyPurchases', endpoint="my_realties"))
+    admin.add_view(HouseModelView(House, db.session, category="Поиск недвижимости"))
+    admin.add_view(PurchaseModelView(Purchase, db.session, category="Поиск недвижимости"))
+    admin.add_link(MenuLink(name='Home', url='/index/', category=''))
     
     db.init_app(app)
     migrate.init_app(app, db)
@@ -85,7 +87,7 @@ def create_app(config_class=Config):
         app.logger.addHandler(file_handler)
 
         app.logger.setLevel(logging.INFO)
-        app.logger.info('RealtyRadar startup')
+        app.logger.info('IIS365 startup')
     
     return app
 

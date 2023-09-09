@@ -15,7 +15,7 @@ from werkzeug.urls import url_parse
 
 
 @bp.route('/', methods=['GET', 'POST'])
-@bp.route('/index', methods=['GET', 'POST'])
+@bp.route('/index/', methods=['GET', 'POST'])
 # @login_required
 def index():
     '''
@@ -35,12 +35,13 @@ def index():
         # , title='Home Page' , form=form, next_url=next_url 
         # , prev_url=prev_url, posts=posts.items)
 
-@bp.route('/user/<username>')
+@bp.route('/user')
 @login_required
-def user(username):
-    user = Users.query.filter_by(username=username).first_or_404()
-    page = request.args.get('page', 1, type=int)
-    
+def user():
+
+    # page = request.args.get('page', 1, type=int)
+    if current_user:
+        print('*****last_seen ', current_user.last_seen.strftime('%d.%m.%Y %H:%M:%S'))
     
     return render_template('user.html', title='Profile', user=current_user)
 

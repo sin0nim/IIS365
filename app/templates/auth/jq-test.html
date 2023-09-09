@@ -1,0 +1,40 @@
+<html>
+<head>
+
+</head>
+<body>
+<div id="pr">
+<h1>js-test</h1>
+<div id="tabs">
+  <button id="tabs1">One</a></li>
+  <button id="tabs2">Two</a></li>
+  <button id="tabs3">Three</a></li>
+  <button id="tabs4">Four</a></li>
+</div>
+<div id="replaced">
+  {{ form.username.label }}<br>
+  {{ form.username(size=64) }}<br>
+  {% for error in form.username.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+  {% endfor %}
+  {{ form.email.label }}<br>
+  {{ form.email(size=120) }}<br>
+  {% for error in form.email.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+  {% endfor %}
+</div>
+<ul>
+
+<li>One</li>
+<li>Two</li>
+<li>Three</li>
+<li>Four</li>
+<li>Five</li>
+</ul>
+</div>
+<script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
+
+<script src="../../static/js/register.js"></script>
+<script src="../../static/js/test1.js"></script>
+</body>
+</html>

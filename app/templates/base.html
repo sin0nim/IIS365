@@ -2,35 +2,58 @@
 {% extends 'bootstrap/base.html' %}
 
 {% block title %}
-	{% if title %}{{ title }} - RR{% else %}Welcome to Realty Radar{% endif %}
+	{% if title %}{{ title }} - IIS365{% else %}Welcome to IIS365{% endif %}
 {% endblock %}
 
 {% block navbar %}
 	<nav class="navbar navbar-default">
 		<div class="container">
-		<a class="blog-nav-item" href="{{ url_for('main.index') }}" }}>Home</a>
+		<button type="button" class="btn">
+		<a class="blog-nav-item" href="{{ url_for('main.index') }}" }}> Домашняя страница </a>
+		</button>
 		
-		<a class="blog-nav-item" href="{{ url_for('hse.index') }}" }}>Аренда</a>
+		<button type="button" class="btn">
+		<a class="blog-nav-item" href="{{ url_for('hse.index') }}" }}> Аренда </a>
+		</button>
+		
 		{% if not current_user.is_anonymous %}
-			<a class="blog-nav-item" href="{{ url_for('hse.insert') }}" }}>Сдать</a>
-		
+			<button type="button" class="btn">
+			<a class="blog-nav-item" href="{{ url_for('hse.insert') }}" }}> Сдать </a>
+			</button>
 		{% endif %}
 		
-		<a class="blog-nav-item" href="{{ url_for('pch.index') }}" }}>Покупка</a>
+		<button type="button" class="btn">
+		<a class="blog-nav-item" href="{{ url_for('pch.index') }}" }}> Покупка </a>
+		</button>
+		
 		{% if not current_user.is_anonymous %}
-			<a class="blog-nav-item" href="{{ url_for('pch.insert') }}" }}>Продать</a>
+			<button type="button" class="btn">
+			<a class="blog-nav-item" href="{{ url_for('pch.insert') }}" }}> Продать </a>
+			</button>
 		{% endif %}
 		
 		{% if current_user.is_anonymous %}
-			<a class="blog-nav-item" href="{{ url_for('auth.login') }}">Login</a>
+			<button type="button" class="btn">
+			<a class="blog-nav-item" href="{{ url_for('auth.login') }}"> Войти </a>
+			</button>
 		{% else %}
-			<a class="blog-nav-item" href="{{ url_for('main.user', username=current_user.username) }}">Profile</a>
-			<a class="blog-nav-item" href="{{ url_for('auth.logout') }}">Logout</a>
+			<button type="button" class="btn">
+			<a class="blog-nav-item" href="{{ url_for('main.user', username=current_user.username) }}"> Профиль </a>
+			</button>
+			
+			<button type="button" class="btn">
+			<a class="blog-nav-item" href="{{ url_for('auth.logout') }}"> Выйти </a>
+			</button>
+		{% endif %}
+		
+		{% if not current_user.is_anonymous %}
+				<button type="button" class="btn">
+				<a class="blog-nav-item" href="{{ url_for('admin.index') }}"> Admin Panel </a>
+				</button>
 		{% endif %}
 
 		</div>
 	</nav>
-		
 {% endblock %}
 
 {% block content %}

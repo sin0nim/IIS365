@@ -1,0 +1,23 @@
+.md {
+ border: 1px solid black; /* Параметры рамки */
+ border-bottom: none; /* Убираем линию снизу */
+ padding: 3px; /* Поля вокруг текста */
+ display: inline; /* Устанавливаем как встроенный элемент */
+ background: #efecdf; /* Цвет фона */
+ font-weight: bold; /* Жирное начертание */
+ font-size: 90%; /* Размер текста */
+ margin: 0px; /* Убираем отступы вокруг */
+ white-space: nowrap; /* Отменяем переносы текста */
+}
+
+ div:hover {
+  background: #cf0; /* Меняем цвет фона */ 
+ }
+ 
+ div:active {
+  background: #fc0; /* Меняем цвет фона */ 
+ }
+ 
+ .element {
+   position: absolute;
+ }

@@ -1,0 +1,29 @@
+{% extends 'admin/master.html' %}
+
+{% block body %}
+<h1>My Houses</h1>
+  <p>admin_view = {{ admin_view }}</p>
+  <p>current_user = {{ current_user }}</p>
+  <p>current_user.is_authenticated = {{ current_user.is_authenticated }}</p>
+  <hr/>
+  <h3>Мои предложения - аренда<h3>
+  <table width=*>
+  {% for my_realty in realty %}
+    <tr>
+		<td valign=top><label><a href="#" title="Редактировать">E&nbsp;</a></label></td>
+	    <td valign=top><label><a href="#" title="Удалить">D&nbsp;</a></label></td>
+	    <td nowrap>{{ my_realty }}</td>
+	</tr>
+  {% endfor %}
+  </table>
+{% endblock %}
+
+{% block tail %}
+<script type="text/javascript">
+$(document).ready(function(){
+     $(".pane .delete").click(function(){
+        $(this).parents(".pane").animate({ opacity: "hide" }, "slow");
+    });
+});
+</script>
+{% endblock %}

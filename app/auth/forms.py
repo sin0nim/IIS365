@@ -11,7 +11,7 @@ class LoginForm(FlaskForm):
 
 class RegistrationForm(FlaskForm):
     username = StringField('Имя', validators=[DataRequired()])
-    user_type = RadioField('Тип пользователя', validators=[DataRequired()], choices=[('1', 'владелец жилья'), ('2', 'риэлтер'), ('3', 'агентство'),])
+    user_type = RadioField('Тип пользователя', validators=[DataRequired()], choices=[('1', 'Агентство недвижимости'), ('2', 'Риелтор'), ('3', 'Собственник'), ('4', 'Пользователь'),])
     email = StringField('e-mail', validators=[DataRequired()])
     phone = StringField('Телефон')
     address = StringField('Адрес')

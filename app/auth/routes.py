@@ -24,6 +24,7 @@ def login():
             return redirect(url_for('auth.login'))
         login_user(user, remember=form.remember_me.data)
         user.last_seen = datetime.utcnow()
+        db.session.commit()
         next_page = request.args.get('next')
         if not next_page or url_parse(next_page).netloc != '':
             next_page = url_for('main.index')
@@ -39,15 +40,69 @@ def logout():
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
+    # form = RegistrationForm()
+    return render_template('auth/register.html', title='Register')
+    # return redirect(url_for('auth.login'))
+
+@bp.route('/reg_an', methods=['GET', 'POST'])
+def reg_an():
+    print('***** reg_an')
     form = RegistrationForm()
     if form.validate_on_submit():
-        user = Users(username=form.username.data, email=form.email.data)
-        user.set_password(form.password.data)
-        db.session.add(user)
-        db.session.commit()
         flash('Congratulations, you are now a registered user!')
+        save_register(form)
         return redirect(url_for('auth.login'))
-    return render_template('auth/register.html', title='Register', form=form)
+    else:
+        flash('Error! Form is not validated.')
+    print('*****form.validate_on_submit = ', form.validate_on_submit())
+    return render_template('auth/reg_an.html', title='Register_agency', form=form)
+
+@bp.route('/reg_rl', methods=['GET', 'POST'])
+def reg_rl():
+    print('***** reg_rl')
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash('Congratulations, you are now a registered user!')
+        save_register(form)
+        return redirect(url_for('auth.login'))
+    else:
+        flash('Error! Form is not validated.')
+    print('*****form.validate_on_submit = ', form.validate_on_submit())
+    return render_template('auth/reg_rl.html', title='Register_realter', form=form)
+
+@bp.route('/reg_ow', methods=['GET', 'POST'])
+def reg_ow():
+    print('***** reg_ow')
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash('Congratulations, you are now a registered user!')
+        save_register(form)
+        return redirect(url_for('auth.login'))
+    else:
+        flash('Error! Form is not validated.')
+    print('*****form.validate_on_submit = ', form.validate_on_submit())
+    return render_template('auth/reg_ow.html', title='Register_owner', form=form)
+
+@bp.route('/reg_us', methods=['GET', 'POST'])
+def reg_us():
+    print('***** reg_us')
+    form = RegistrationForm()
+    if form.validate_on_submit():
+        flash('Congratulations, you are now a registered user!')
+        save_register(form)
+        return redirect(url_for('auth.login'))
+    else:
+        flash('Error! Form is not validated.')
+    print('*****form.validate_on_submit = ', form.validate_on_submit())
+    return render_template('auth/reg_us.html', title='Register_user', form=form)
+
+def save_register(form):
+    user = Users(username=form.username.data, user_type=form.user_type.data, email=form.email.data, phone=form.phone.data, address=form.address.data, about=form.about.data)
+    user.set_password(form.password.data)
+    db.session.add(user)
+    db.session.commit()
+    return
+
 
 @bp.route('/edit_profile', methods=['GET', 'POST'])
 @login_required

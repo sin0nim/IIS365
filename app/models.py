@@ -27,7 +27,7 @@ class Users(UserMixin, db.Model):
     email = db.Column(db.String(120), index=True, unique=True)
     phone = db.Column(db.String(20))
     address = db.Column(db.String(200))
-    money = db.Column(db.Float(10,2))
+    money = db.Column(db.Float(10,2), default=0.0)
     password_hash = db.Column(db.String(128))
     about = db.Column(db.String(140))
     last_seen = db.Column(db.DateTime, default=datetime.utcnow)
@@ -44,7 +44,7 @@ class Users(UserMixin, db.Model):
     '''
     
     def __repr__(self):
-        return f'<User {self.username}, {" АН" if self.user_type == "0" else " физ. лицо"}, phone: {self.phone}, e-mail: {self.email}>'
+        return f'<Username {self.username}, user_type {self.user_type }, phone: {self.phone}, e-mail: {self.email}>'
     
     def rent_offers(self):
         offered = House.query.filter_by(holder=self.id)

@@ -1,37 +1,15 @@
 {% extends "base.html" %}
 
+{% block head %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">  
+{% endblock %}
+
 {% block app_content %}
-    <h1>Register</h1>
-    <form action="" method="post">
-        {{ form.hidden_tag() }}
-        <p>
-            {{ form.username.label }}<br>
-            {{ form.username(size=32) }}<br>
-            {% for error in form.username.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.email.label }}<br>
-            {{ form.email(size=64) }}<br>
-            {% for error in form.email.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password.label }}<br>
-            {{ form.password(size=32) }}<br>
-            {% for error in form.password.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>
-            {{ form.password2.label }}<br>
-            {{ form.password2(size=32) }}<br>
-            {% for error in form.password2.errors %}
-            <span style="color: red;">[{{ error }}]</span>
-            {% endfor %}
-        </p>
-        <p>{{ form.submit() }}</p>
-    </form>
+<h2>Регистрация</h2>
+<div id="tabs">
+  <button id="tabs1"><a href="{{ url_for('auth.reg_an', form=form) }}">Агентство недвижимости</a></button>
+  <button id="tabs2"><a href="{{ url_for('auth.reg_rl', form=form) }}">Риелтор</a></button>
+  <button id="tabs3"><a href="{{ url_for('auth.reg_ow', form=form) }}">Собственник</a></button>
+  <button id="tabs4"><a href="{{ url_for('auth.reg_us', form=form) }}">Пользователь</a></button>
+</div>
 {% endblock %}

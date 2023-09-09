@@ -1,9 +1,16 @@
 {% extends 'admin/master.html' %}
 
 {% block body %}
-  <h1>Вы находитесь в административной панели.</h1>
+<h1>My Purchases</h1>
+  <p>admin_view = {{ admin_view }}</p>
   <p>current_user = {{ current_user }}</p>
   <p>current_user.is_authenticated = {{ current_user.is_authenticated }}</p>
+  <hr/>
+  <h3>Мои предложения - продажа<h3>
+  {% for my_realty in realty %}
+	<p>{{ my_realty }}</p>
+  {% endfor %}
+
 {% endblock %}
 
 {% block tail %}

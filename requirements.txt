@@ -6,6 +6,7 @@ dnspython==2.3.0
 dominate==2.7.0
 email-validator==2.0.0.post1
 Flask==2.2.3
+Flask-Admin==1.6.1
 Flask-Bootstrap==3.3.7.1
 Flask-Login==0.6.2
 Flask-Mail==0.9.1
@@ -21,6 +22,7 @@ Mako==1.2.4
 MarkupSafe==2.1.2
 psycopg2==2.9.6
 PyJWT==2.6.0
+python-dotenv==1.0.0
 SQLAlchemy==2.0.9
 typing_extensions==4.5.0
 visitor==0.1.3

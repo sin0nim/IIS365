@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block head %}
+<link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">  
+{% endblock %}
+
+{% block app_content %}
+<h2>Регистрация</h2>
+<form action="" method="post">
+  {{ form.hidden_tag() }}
+
+<div id="tabs">
+  <button id="tabs1">Агентство недвижимости</button>
+  <button id="tabs2"><a href="{{ url_for('auth.reg_rl') }}">Риелтор</a></button>
+  <button id="tabs3"><a href="{{ url_for('auth.reg_ow') }}">Собственник</a></button>
+  <button id="tabs4"><a href="{{ url_for('auth.reg_us') }}">Пользователь</a></button>
+</div>
+
+<div id="replaced">
+  {{ form.username.label }}<br>
+  {{ form.username(size=64) }}<br>
+  {% for error in form.username.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+  {% endfor %}
+  {{ form.email.label }}<br>
+  {{ form.email(size=120) }}<br>
+  {% for error in form.email.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+  {% endfor %}
+  {{ form.address.label }}<br>
+  {{ form.address(size=120) }}<br>
+  {% for error in form.address.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+  {% endfor %}
+  {{ form.phone.label }}<br>
+  {{ form.phone(size=120) }}<br>
+  {% for error in form.phone.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+  {% endfor %}
+  {{ form.about.label }}<br>
+  {{ form.about(size=120) }}<br>
+  {% for error in form.about.errors %}
+    <span style="color: red;">[{{ error }}]</span>
+  {% endfor %}
+  <input type=hidden name=user_type value="3">
+</div>
+  <p>
+    {{ form.password.label }}<br>
+    {{ form.password(size=32) }}<br>
+    {% for error in form.password.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>
+    {{ form.password2.label }}<br>
+    {{ form.password2(size=32) }}<br>
+    {% for error in form.password2.errors %}
+      <span style="color: red;">[{{ error }}]</span>
+    {% endfor %}
+  </p>
+  <p>{{ form.submit() }}</p>
+</form>
+{% endblock %}
