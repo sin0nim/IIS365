@@ -12,13 +12,6 @@ from flask_login import LoginManager
 
 db = SQLAlchemy()
 login = LoginManager()
-
-'''
-followers = db.Table('followers',
-    db.Column('follower_id', db.Integer, db.ForeignKey('user.id')),
-    db.Column('followed_id', db.Integer, db.ForeignKey('user.id'))
-)
-'''
     
 class Users(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -34,14 +27,6 @@ class Users(UserMixin, db.Model):
     house_offers = db.relationship('House', backref='lessor', lazy='dynamic')
     purchase_offers = db.relationship('Purchase', backref='seller', lazy='dynamic')
     # filters = db.relationship('Filter', backref='user', lazy='dynamic')
-    '''    
-    posts = db.relationship('Post', backref='author', lazy='dynamic')
-    followed = db.relationship(
-        'Users', secondary=followers,
-        primaryjoin=(followers.c.follower_id == id),
-        secondaryjoin=(followers.c.followed_id == id),
-        backref=db.backref('followers', lazy='dynamic'), lazy='dynamic')
-    '''
     
     def __repr__(self):
         return f'<Username {self.username}, user_type {self.user_type }, phone: {self.phone}, e-mail: {self.email}>'
@@ -59,26 +44,7 @@ class Users(UserMixin, db.Model):
     
     def check_password(self, password):
         return check_password_hash(self.password_hash, password)
-    
-    '''
-    def avatar(self, size):
-        digest = md5(self.email.lower().encode('utf-8')).hexdigest()
-        return 'https://www.gravatar.com/avatar/{}?d=identicon&s={}'.format(
-            digest, size)
-    
-    def follow(self, user):
-        if not self.is_following(user):
-            self.followed.append(user)
-    
-    def unfollow(self, user):
-        if self.is_following(user):
-            self.followed.remove(user)
-    
-    def is_following(self, user):
-        return self.followed.filter(
-            followers.c.followed_id == user.id).count() > 0
-    '''
-    
+        
     def get_reset_password_token(self, expires_in=600):
         return jwt.encode(
             {'reset_password': self.id, 'exp': time() + expires_in},

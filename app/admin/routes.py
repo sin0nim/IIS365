@@ -87,20 +87,7 @@ class MyHouseModelView(BaseView):
     create_modal = True
     edit_modal = True
     can_export = True   # включить csv экспорт вида модели
-    
-    '''
-    form_ajax_refs = {
-        'active_user': QueryAjaxModelLoader('user', db.session, Users, filters=["is_active=True"])
-    }
-    
-    form_ajax_refs = {
-        'user': {
-            'fields': ['username', 'user_type', 'email'],
-            'page_size': 10
-        }
-    }
-     '''
-    
+        
     @expose('/')
     def index(self):
         realty = House.query.filter_by(holder=current_user.id).all()
@@ -128,11 +115,6 @@ class MyPurchaseModelView(BaseView):
         realty = Purchase.query.filter_by(owner=current_user.id).all()
         return self.render('/admin/my_purchases.html', realty=realty)
     
-    '''
-    form_ajax_refs = {
-        'active_user': QueryAjaxModelLoader('username', db.session, Users, filters=["is_active=True"])
-    }
-    '''
     def is_accessible(self):
         return current_user.is_authenticated
     
@@ -147,15 +129,6 @@ class HouseModelView(sqla.ModelView):
     can_delete = False
     column_searchable_list = ['rooms', 'living_area', 'nfloor', 'rental_period', 'price']
     column_filters = ['rooms', 'living_area', 'nfloor', 'rental_period', 'price']
-
-    '''
-    form_ajax_refs = {
-        'Users': {
-            'fields': ['username', 'user_type', 'last_seen'],
-            'page_size': 10
-        }
-    }
-    '''
     
     def is_accessible(self):
         return current_user.is_authenticated
@@ -170,14 +143,6 @@ class PurchaseModelView(sqla.ModelView):
     can_delete = False
     column_searchable_list = ['rooms', 'living_area', 'nfloor', 'price']
     column_filters = ['rooms', 'living_area', 'nfloor', 'price']
-    '''
-    form_ajax_refs = {
-        'Users': {
-            'fields': ['username', 'user_type', 'last_seen'],
-            'page_size': 10
-        }
-    }
-    '''
     
     def is_accessible(self):
         return current_user.is_authenticated
@@ -217,13 +182,9 @@ class UserEqualFilter(UserFilter):
     def operation(self):
         return gettext('equals')
     
-    #, Вы можете проверить значения. Если значение недействительно,
-    # вернуть `False`, поэтому фильтр будет проигнорирован.
     def validate(self, value):
         return True # ?
     
-    # Вы можете "очистить" значения, прежде чем они будут
-    # переданы на уровень доступа к вашим данным
     def clean(self, value):
         return value
 
@@ -240,48 +201,3 @@ class UserLessFilter(UserFilter):
     
     def operation(self):
         return gettext('less')
-    '''
-        form = LoginForm(request.form):
-        if request.method == 'POST' and form.validate_on_submit():
-            # username = form('username')
-            # password = form('password')
-            # print('*****username =', username, '  password =',password)
-            user = get_user(form.username.data)
-            print('##### user =', user)
-            if not user is None:
-                login_user(user)
-                return redirect(url_for('admin.index'))
-            else:
-                flash('Wrong username')
-                return redirect(url_for('admin.login_view'))
-            # проверка введённых данных
-            
-            if username == 'susan' and password == 'cat':
-                login.login_user(user)
-                redirect(url_for('.index'))
-            else:
-                flash('Неправильный логин или пароль')
-                return redirect(url_for('.login_view'))
-            
-        return self.render('admin/login.html', form=form)
-        # self._template_args['form'] = form
-        # return super(AdminIndex, self).index()
-    
-    @bp.route('/logout/')
-    @expose('/logout/')
-    def logout_view(self):
-        logout_user()
-        return redirect(url_for('admin.index'))
-    
-    @bp.route('/register/', methods=['GET', 'POST'])
-    @expose('/register/', methods=['GET', 'POST'])
-    def register_view(self):
-        return self.render('admin/register.html')
-    
-    @bp.route('/reset_password_request/', methods=['GET', 'POST'])
-    def reset_password_request_view(self):
-        return self.render('admin/reset_password_request.html')
-    
-    def is_accessiblle(self):
-        return current_user.is_authenticated
-    '''

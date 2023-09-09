@@ -40,13 +40,10 @@ def logout():
 def register():
     if current_user.is_authenticated:
         return redirect(url_for('main.index'))
-    # form = RegistrationForm()
     return render_template('auth/register.html', title='Register')
-    # return redirect(url_for('auth.login'))
 
 @bp.route('/reg_an', methods=['GET', 'POST'])
 def reg_an():
-    print('***** reg_an')
     form = RegistrationForm()
     if form.validate_on_submit():
         flash('Congratulations, you are now a registered user!')
@@ -54,12 +51,10 @@ def reg_an():
         return redirect(url_for('auth.login'))
     else:
         flash('Error! Form is not validated.')
-    print('*****form.validate_on_submit = ', form.validate_on_submit())
     return render_template('auth/reg_an.html', title='Register_agency', form=form)
 
 @bp.route('/reg_rl', methods=['GET', 'POST'])
 def reg_rl():
-    print('***** reg_rl')
     form = RegistrationForm()
     if form.validate_on_submit():
         flash('Congratulations, you are now a registered user!')
@@ -67,12 +62,10 @@ def reg_rl():
         return redirect(url_for('auth.login'))
     else:
         flash('Error! Form is not validated.')
-    print('*****form.validate_on_submit = ', form.validate_on_submit())
     return render_template('auth/reg_rl.html', title='Register_realter', form=form)
 
 @bp.route('/reg_ow', methods=['GET', 'POST'])
 def reg_ow():
-    print('***** reg_ow')
     form = RegistrationForm()
     if form.validate_on_submit():
         flash('Congratulations, you are now a registered user!')
@@ -80,12 +73,10 @@ def reg_ow():
         return redirect(url_for('auth.login'))
     else:
         flash('Error! Form is not validated.')
-    print('*****form.validate_on_submit = ', form.validate_on_submit())
     return render_template('auth/reg_ow.html', title='Register_owner', form=form)
 
 @bp.route('/reg_us', methods=['GET', 'POST'])
 def reg_us():
-    print('***** reg_us')
     form = RegistrationForm()
     if form.validate_on_submit():
         flash('Congratulations, you are now a registered user!')
@@ -93,7 +84,6 @@ def reg_us():
         return redirect(url_for('auth.login'))
     else:
         flash('Error! Form is not validated.')
-    print('*****form.validate_on_submit = ', form.validate_on_submit())
     return render_template('auth/reg_us.html', title='Register_user', form=form)
 
 def save_register(form):
